@@ -12,11 +12,18 @@ jobs:
         os: [ubuntu-latest, windows-latest]
 
     steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
-        with: node-version: '16' 
-          
-      - name: Install dependencies
-        run: npm install
-      - name: Run Unit Tests
-        run: python -m unittest discover -s tests -p "test_*.py"
+        with:
+          node-version: '16'
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - run: |
+          python -m unittest discover -s tests -p "test_*.py"
