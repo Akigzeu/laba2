@@ -11,10 +11,10 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
 
-eps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+    steps:
+      
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: python tests.py
+     
+      - name: Run Unit Tests
+        run: |
+          python -m unittest discover -s tests -p "test_*.py"
