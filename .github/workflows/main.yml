@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}  # Этот параметр позволяет авторизованно checkout репозитория
 
       - name: Set up Python
         uses: actions/setup-python@v2
