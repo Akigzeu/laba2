@@ -1,26 +1,28 @@
-name: Run Tests
+name: Python Unit Tests
 
-on:
-  push:
-    branches:
-      - main
+on: [push] # этот workflow запускается после каждой операции push
 
 jobs:
   test:
-    name: Run tests
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }} # это будет запускаться на двух встроенных runner’ах - ubuntu-latest и windows-latest
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.x'
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x' # версия Python, которую вы хотите использовать
 
-      - name: Run tests
-        run: python test2.py
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run tests
+      run: |
+        python -m unittest discover
