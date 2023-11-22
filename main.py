@@ -11,11 +11,4 @@ def area_rectangle(length, width):
     if length <0 or width <0:
         raise ValueError("Длина или ширина не могут быть отрицательными")
     return length * width
-radius = int(input())
-circle_are = circle_area(radius)
-print(circle_are)
-length = int(input())
-width = int(input())
-rectangle = area_rectangle(length, width)
-print(rectangle)
 
