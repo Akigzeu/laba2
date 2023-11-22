@@ -9,6 +9,24 @@ class TestAreas(unittest.TestCase):
         self.assertEqual(circle_area(0), 0)
         self.assertEqual(circle_area(2.5), pi * (2.5 ** 2))
 
+    def test_negative_radius(self):
+        with self.assertRaises(ValueError):
+            circle_area(-2)
+        with self.assertRaises(ValueError):
+            circle_area(-1)
+
+    def test_invalid_inputs(self):
+        with self.assertRaises(TypeError):
+            circle_area('five')
+        with self.assertRaises(TypeError):
+            circle_area(5 + 2j)
+        with self.assertRaises(TypeError):
+            circle_area([16, 42])
+        with self.assertRaises(TypeError):
+            circle_area([22])
+        with self.assertRaises(TypeError):
+            circle_area(True)
+
     
 if __name__ == '__main__':
     unittest.main()
