@@ -1,22 +1,21 @@
-name: Run Unit Tests
+name: Автотесты
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
 
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
-    
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-    
-    - name: Install dependencies
-      run: npm install
-    
-    - name: Run unit tests
-      run: npm test
+      - name: Checkout репозитория
+        uses: actions/checkout@v2
+
+      - name: Запуск тестов
+        run: python tets.py 7 8 9
