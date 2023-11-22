@@ -23,4 +23,4 @@ jobs:
           python-version: '3.x'
 
       - name: Run tests
-        run: python tests.py
+        run: python test2.py
