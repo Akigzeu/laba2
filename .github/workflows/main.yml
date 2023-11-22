@@ -1,27 +1,26 @@
-name: Автотесты
+name: Run Tests
 
 on:
   push:
-    branches:
+    branches: 
       - main
 
 jobs:
   test:
+    name: Run tests
     runs-on: ${{ matrix.os }}
-
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
 
     steps:
-      - name: Checkout репозитория
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Установка Node.js 16
-        uses: actions/setup-node@v4
-        with:
-          node-version: '16'
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
 
-      - name: Запуск тестов
-        run: |
-          python tets.py 7 8 9
+    - name: Run tests
+      run: python tests.py
